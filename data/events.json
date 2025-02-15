@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "Tech Meetup 2023",
+    "date": "2023-08-15",
+    "time": "6:00 PM PST",
+    "location": "Tech Hub, Downtown",
+    "category": "Technology",
+    "description": "Join us for an evening of tech talks and networking with industry professionals.",
+    "image": "https://images.pexels",
+    "price": "Free",
+    "capacity": 200,
+    "organizer": "User",
+    "status": "published",
+    "additionalInfo": [
+      "Please arrive 15 minutes before the event starts",
+      "Bring your ID for check-in",
+      "Food and drinks will be provided",
+      "Parking is available at the venue",
+      "Light refreshments will be served"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Entrepreneur Workshop 2023",
+    "date": "2023-10-10",
+    "time": "1:00 PM PST",
+    "location": "Innovation Center",
+    "category": "Business",
+    "description": "Learn how to build a successful startup from the ground up.",
+    "image": "https://images.pexels",
+    "price": "$50",
+    "capacity": 100,
+    "organizer": "Admin",
+    "additionalInfo": [
+      "Please arrive 15 minutes before the event starts",
+      "Bring your ID for check-in",
+      "Food and drinks will be provided",
+      "Parking is available at the venue",
+      "Light refreshments will be served"
+    ],
+    "status": "published"
+  },
+  {
+    "id": 3,
+    "title": "Music Festival 2023",
+    "date": "2023-07-20",
+    "time": "3:00 PM PST",
+    "location": "City Park",
+    "category": "Music",
+    "description": "Experience live music performances by top artists in the industry.",
+    "image": "https://images.pexels",
+    "price": "$100",
+    "capacity": 500,
+    "organizer": "User",
+    "status": "pending",
+    "additionalInfo": [
+      "Please arrive 15 minutes before the event starts",
+      "Bring your ID for check-in",
+      "Food and drinks will be provided",
+      "Parking is available at the venue",
+      "Light refreshments will be served"
+    ]
+  }
+]
