@@ -5,10 +5,10 @@ import {
   Calendar,
   House,
   LogOut,
+  Mails,
   Menu,
   PlusCircle,
   UserCircle,
-  Users,
   X,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
@@ -24,9 +24,9 @@ const adminLinks = [
     icon: PlusCircle,
   },
   {
-    href: "/dashboard/admin/enrolled-events",
-    label: "Enrolled Events",
-    icon: Users,
+    href: "/dashboard/admin/messages",
+    label: "Messages",
+    icon: Mails,
   },
   { href: "/dashboard/admin/profile", label: "Profile", icon: UserCircle },
 ];
@@ -37,12 +37,17 @@ const userLinks = [
     label: "Enrolled Events",
     icon: Calendar,
   },
+  {
+    href: "/dashboard/user/messages",
+    label: "Messages",
+    icon: Mails,
+  },
   { href: "/dashboard/user/profile", label: "Profile", icon: UserCircle },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ user }: { user: { role: string } }) {
   const pathname = usePathname();
-  const isAdmin = pathname.includes("/admin"); // This is a simple check, replace with actual auth logic
+  const isAdmin = user.role?.toLocaleLowerCase() === "admin";
   const links = isAdmin ? adminLinks : userLinks;
   const [isOpen, setIsOpen] = useState(false);
 

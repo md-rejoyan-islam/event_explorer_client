@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { GET_EVENT_BY_ID } from "@/queries/event.query";
+import { GET_EVENT_BY_ID_WITH_USERID } from "@/queries/event.query";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import CreateEventForm from "./admin/create-event";
@@ -22,7 +22,7 @@ export function EditEventModal({ eventId, userId }: EditEventModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: { event = {} } = {} } = useQuery(
-    GET_EVENT_BY_ID({
+    GET_EVENT_BY_ID_WITH_USERID({
       query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email} , description , additionalInfo , id , status`,
     }),
     {

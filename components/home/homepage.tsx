@@ -40,7 +40,9 @@ export default function Homepage({ events }: { events: EVENT_TYPE[] }) {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events?.length ? (
-            events?.map((event) => <FeatureCard event={event} key={event.id} />)
+            events?.map((event, index) => (
+              <FeatureCard event={event} key={event.id} index={index} />
+            ))
           ) : (
             <div className="text-center text-xl text-gray-600">
               No featured events available

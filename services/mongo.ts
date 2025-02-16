@@ -15,7 +15,6 @@ const connectDB = async () => {
     } else {
       console.error("An unknown error occurred");
     }
-    // process.exit(1);
   }
 };
 

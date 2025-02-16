@@ -1,14 +1,12 @@
-export const timestampToDate = (timestamp: number) => {
-  const date = new Date(timestamp);
+export const formattedDate = (isoDate: string) => {
+  const date = new Date(isoDate);
 
-  const formattedDate =
-    date.getDate() +
-    " " +
-    date.toLocaleString("en-US", { month: "long" }) +
-    " " +
-    date.getFullYear();
-  console.log(formattedDate);
+  const options: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  };
+  const formattedDate = date.toLocaleDateString("en-GB", options);
 
   return formattedDate;
 };
-

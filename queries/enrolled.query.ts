@@ -12,6 +12,17 @@ export const ENROLLED_AN_EVENT = gql`
 `;
 
 export const GET_ENROLLED_EVENTS_BY_USER_ID = gql`
+  query GetEnrolledEventsByUserId($userId: ID!) {
+    events: getEnrolledEventsByUserId(userId: $userId) {
+      eventId
+      event {
+        title
+        date
+      }
+    }
+  }
+`;
+export const GET_ENROLLED_EVENTS_BY_CREATOR_ID = gql`
   query GetEnrolledEventsByCreaterId($authorId: ID!) {
     events: getEnrolledEventsByCreaterId(authorId: $authorId) {
       createdAt
@@ -23,6 +34,14 @@ export const GET_ENROLLED_EVENTS_BY_USER_ID = gql`
         title
         date
       }
+    }
+  }
+`;
+
+export const UNENROLLED_AN_EVENT = gql`
+  mutation UnenrollEvent($eventId: ID!, $userId: ID!) {
+    event: unenrollEvent(eventId: $eventId, userId: $userId) {
+      id
     }
   }
 `;

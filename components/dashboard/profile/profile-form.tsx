@@ -70,8 +70,6 @@ export default function ProfileForm({
         refetch();
       },
       onError: (error) => {
-        console.log("Error:", error);
-
         toast.error(error.message);
       },
     });

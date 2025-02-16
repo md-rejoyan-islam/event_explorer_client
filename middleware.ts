@@ -7,12 +7,7 @@ export async function middleware(req: NextRequest) {
     req,
     secret,
     cookieName: "next-auth.session-token",
-    // cookieName: "next-auth.session-token",
   });
-
-  // token from the cookies named "token"
-
-  console.log(req.cookies.get("token"));
 
   const url = new URL(req.url);
   const pathname = url.pathname;

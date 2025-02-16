@@ -113,11 +113,11 @@ const CreateEventForm = ({
   });
 
   const [createEvent] = useMutation(CREATE_AN_EVENT, {
-    refetchQueries: ["AllEvents", "GetAllEventsByUserId"],
+    refetchQueries: ["AllEventOutput", "GetAllEventsByUserId"],
   });
 
   const [updateEvent] = useMutation(UPDATE_EVENT_BY_ID, {
-    refetchQueries: ["AllEvents", "GetAllEventsByUserId"],
+    refetchQueries: ["AllEventOutput", "GetAllEventsByUserId"],
   });
 
   const onSubmit = async (data: EventFormValues) => {

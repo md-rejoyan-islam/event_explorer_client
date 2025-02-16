@@ -93,8 +93,8 @@ export default function EventPage({
         variants={staggerChildren}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
-        {events?.map((event) => (
-          <FeatureCard event={event} key={event.id} />
+        {events?.map((event, index) => (
+          <FeatureCard event={event} key={event.id} index={index} />
         ))}
       </motion.div>
     </motion.div>

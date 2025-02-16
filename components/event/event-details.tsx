@@ -1,13 +1,16 @@
 "use client";
 
 import { ENROLLED_AN_EVENT } from "@/queries/enrolled.query";
-import { GET_EVENT_BY_ID } from "@/queries/event.query";
+import {
+  GET_EVENT_BY_ID,
+  GET_EVENT_BY_ID_WITH_USERID,
+} from "@/queries/event.query";
 import { fadeIn, slideIn, staggerChildren } from "@/utils/animations";
 import { SessionType } from "@/utils/types";
+import { formattedDate } from "@/utils/utils";
 import { useMutation, useQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { Calendar, Clock, DollarSign, MapPin, Tag, Users } from "lucide-react";
-import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -23,15 +26,19 @@ export default function EventDetails({
   const user = session?.user || null;
 
   const { data, refetch } = useQuery(
-    GET_EVENT_BY_ID({
-      query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email}  `,
-    }),
+    userId
+      ? GET_EVENT_BY_ID_WITH_USERID({
+          query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email} , additionalInfo  `,
+        })
+      : GET_EVENT_BY_ID({
+          query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email} , additionalInfo  `,
+        }),
     {
       variables: { id: eventId, userId },
     }
   );
 
-  const event = { ...data?.event, isEnrolled: data?.isEnrolled };
+  const event = { ...data?.event, isEnrolled: data?.isEnrolled ?? false };
 
   const router = useRouter();
   const pathname = usePathname();
@@ -79,20 +86,13 @@ export default function EventDetails({
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <Image
-              src={event.image || "/placeholder.svg"}
-              alt={event.title}
-              className="w-full h-64 object-cover rounded-lg mb-4"
-              width={800}
-              height={500}
-            />
-            <h2 className="text-2xl font-semibold mb-4 text-mySecondary ">
+            <h2 className="text-2xl font-semibold mb-4 text-mySecondary  ">
               Event Details
             </h2>
             <div className="space-y-1.5">
               <p className="flex items-center">
                 <Calendar className="mr-2 w-8 h-8 bg-violet-100 text-violet-700 stroke-[2.5px] p-2 rounded-md" />
-                <strong>Date:</strong> &nbsp; {event.date}
+                <strong>Date:</strong> &nbsp; {formattedDate(event.date)}
               </p>
               <p className="flex items-center">
                 <Clock className="mr-2 w-8 h-8 bg-violet-100 text-violet-700 stroke-[2.5px] p-2 rounded-md" />
@@ -129,9 +129,9 @@ export default function EventDetails({
               Additional Information
             </h3>
             <ul className="list-disc list-inside space-y-2">
-              <li>Please arrive 15 minutes before the event starts</li>
-              <li>Parking is available at the venue</li>
-              <li>Light refreshments will be served</li>
+              {event?.additionalInfo?.map((info: string, index: number) => (
+                <li key={index}>{info}</li>
+              ))}
             </ul>
           </div>
         </div>

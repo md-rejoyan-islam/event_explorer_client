@@ -33,14 +33,18 @@ export default function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
-  const next = searchParams.get("next") || "/dashboard/user";
+
   const onSubmit = async (data: FormData) => {
     try {
       const response = await login(data);
+
       if (response?.status === "error") {
         toast.error(response.message);
       } else {
         toast.success("Logged in successfully!");
+        const next =
+          searchParams.get("next") ||
+          `/dashboard/${data.isAdmin ? "admin" : "user"}`;
         router.push(next);
       }
       setIsLoading(false);

@@ -11,6 +11,17 @@ export const GET_ALL_EVENTS = ({ query }: { query: string }) => gql`
   `;
 
 export const GET_EVENT_BY_ID = ({ query }: { query: string }) => gql`
+      query EventById($id: ID!) {
+        event: getEventById(id: $id) {
+          ${query}
+        }
+      }
+    `;
+export const GET_EVENT_BY_ID_WITH_USERID = ({
+  query,
+}: {
+  query: string;
+}) => gql`
       query EventById($id: ID!, $userId: ID!) {
         event: getEventById(id: $id) {
           ${query}

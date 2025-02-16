@@ -7,7 +7,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { fadeIn, slideIn } from "@/utils/animations";
-import { SessionType } from "@/utils/types";
 import { deleteCookie } from "cookies-next";
 
 import { motion } from "framer-motion";
@@ -19,10 +18,9 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { useState } from "react";
 
-const Header = ({ session }: { session?: SessionType }) => {
+const Header = ({ user }: { user?: { role: string } }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const user = session?.user || null;
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -61,9 +59,9 @@ const Header = ({ session }: { session?: SessionType }) => {
           <NavLink href="/">Home</NavLink>
           <NavLink href="/events">Events</NavLink>
           <NavLink href="/contact">Contact</NavLink>
-          {!user && <NavLink href="/login">Login</NavLink>}
+          {!user?.role && <NavLink href="/login">Login</NavLink>}
 
-          {user && (
+          {user?.role && (
             <Popover>
               <PopoverTrigger>
                 <Avatar>
@@ -77,7 +75,7 @@ const Header = ({ session }: { session?: SessionType }) => {
                 className="mt-2.5 p-0.5 max-w-[180px]"
               >
                 <Link
-                  href="/dashboard/admin"
+                  href={`/dashboard/${user?.role?.toLowerCase()}`}
                   className="px-4 py-2 text-gray-700 flex items-center gap-1 hover:bg-gray-100 bg-gray-50"
                 >
                   <LayoutDashboard className="w-5 h-5 mr-2" />
