@@ -22,7 +22,7 @@ export const {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.AUTH_SECRET,
+  secret: "process.env.AUTH_SECRET",
   adapter: MongoDBAdapter(mongoClient),
   // adapter: PrismaAdapter(prisma),
   providers: [
