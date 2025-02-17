@@ -67,7 +67,7 @@ export const createLoginToken = async (email: string) => {
   });
   setCookie("token", token, {
     cookies,
-    sameSite: "lax",
+    sameSite: "none",
     httpOnly: process.env.NODE_ENV === "production",
     secure: process.env.NODE_ENV === "production",
   });
