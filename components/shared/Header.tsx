@@ -33,6 +33,7 @@ const Header = ({ user }: { user?: { role: string } }) => {
       httpOnly: process.env.NODE_ENV === "production",
       secure: process.env.NODE_ENV === "production",
     });
+
     router.refresh();
   };
 

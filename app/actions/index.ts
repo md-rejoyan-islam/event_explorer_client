@@ -20,7 +20,7 @@ export async function login(data: LOGIN_TYPE) {
         setCookie("token", token, {
           cookies,
           sameSite: "lax",
-          httpOnly: process.env.NODE_ENV === "production",
+          httpOnly: true,
           secure: process.env.NODE_ENV === "production",
         }); // https://event-explorer.vercel.app/api/auth/callback/google
 
