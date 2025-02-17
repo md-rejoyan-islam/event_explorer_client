@@ -13,11 +13,12 @@ export async function middleware(req: NextRequest) {
   // get token from cookie
   const cookies = req.cookies;
 
-  cookies.set("tokenww", "tokenww");
-
-  // console.log("cookies", cookies);
-
   const token = cookies.get("token");
+
+  const requestHeaders = new Headers(req.headers);
+  if (token) {
+    requestHeaders.set("Authorization", `Bearer ${token}`);
+  }
 
   const url = new URL(req.url);
   const pathname = url.pathname;
@@ -30,7 +31,11 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login?next=" + pathname, req.url));
   }
 
-  return NextResponse.next();
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 }
 
 export const config = {

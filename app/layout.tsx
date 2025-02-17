@@ -1,5 +1,6 @@
 import ApolloClientProvider from "@/components/provider/apollo-provider";
 import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
@@ -15,10 +16,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const token = cookies().get("token")?.value;
+  console.log("token", token);
+
   return (
     <html lang="en">
       <body className={`${inter.className} bg-myBackground text-myText`}>
-        <ApolloClientProvider>{children}</ApolloClientProvider>
+        <ApolloClientProvider token={token}>{children}</ApolloClientProvider>
         <ToastContainer
           position="top-right"
           autoClose={5000}
