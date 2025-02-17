@@ -5,7 +5,6 @@ import {
   GET_USER_ID_BY_EMAIL,
 } from "@/queries/auth.query";
 import { GET_ALL_EVENTS_BY_USER_ID } from "@/queries/event.query";
-import { setCookie } from "cookies-next";
 import { cookies } from "next/headers";
 
 export const getUserByEmail = async (email: string) => {
@@ -65,11 +64,20 @@ export const createLoginToken = async (email: string) => {
     mutation: CREATE_LOGIN_TOKEN,
     variables: { email },
   });
-  setCookie("token", token, {
-    cookies,
+  cookies().set({
+    name: "token",
+    value: token,
+    httpOnly: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    httpOnly: true,
-    secure: true,
+    path: "/", // Ensure the cookie is accessible site-wide
+    maxAge: 60 * 60 * 24, // 1 day
   });
+  // setCookie("token", token, {
+  //   cookies,
+  //   sameSite: "lax",
+  //   httpOnly: process.env.NODE_ENV === "production",
+  //   secure: process.env.NODE_ENV === "production",
+  // });
   return token;
 };
