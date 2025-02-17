@@ -70,7 +70,6 @@ export const createLoginToken = async (email: string) => {
     httpOnly: process.env.NODE_ENV === "production",
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    path: "/", // Ensure the cookie is accessible site-wide
     maxAge: 60 * 60 * 24, // 1 day
   });
   // setCookie("token", token, {
