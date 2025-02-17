@@ -2,6 +2,12 @@ import MessagesTable from "@/components/dashboard/user-messages-table";
 import { auth } from "@/lib/auth";
 import { getUserIdByEmail } from "@/utils/fetch-query";
 import { SessionType } from "@/utils/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Messages | Event Explorer",
+  description: "User can view all the messages in the dashboard.",
+};
 
 export default async function Messages() {
   const session = (await auth()) as unknown as SessionType;

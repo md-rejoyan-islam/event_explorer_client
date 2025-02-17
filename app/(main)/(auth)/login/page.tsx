@@ -1,7 +1,14 @@
 import Login from "@/components/auth/login";
 import { auth } from "@/lib/auth";
 import { SessionType } from "@/utils/types";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Login | Event Explorer",
+  description:
+    "Login to your account to access all the features of Event Explorer.",
+};
 
 export default async function LoginPage() {
   const session = (await auth()) as unknown as SessionType;

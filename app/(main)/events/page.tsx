@@ -4,6 +4,13 @@ import {
   GET_ALL_EVENTS,
   GET_ALL_EVENTS_CATEGORIES,
 } from "@/queries/event.query";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Events | Event Explorer",
+  description:
+    "Find the best events happening around you. Join now!. Every event is an opportunity to learn, grow, and meet new people.",
+};
 
 export default async function Events({
   searchParams,

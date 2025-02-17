@@ -60,7 +60,7 @@ const Header = ({ user }: { user?: { role: string } }) => {
             Event Explorer
           </motion.h1>
         </Link>
-        <nav className="hidden md:flex space-x-4 items-center">
+        <nav className="hidden md:flex space-x-1 items-center">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/events">Events</NavLink>
           <NavLink href="/contact">Contact</NavLink>
@@ -116,16 +116,20 @@ const Header = ({ user }: { user?: { role: string } }) => {
           <NavLink href="/events" mobile>
             Events
           </NavLink>
+
           <NavLink href="/contact" mobile>
             Contact
           </NavLink>
-          <NavLink href="/dashboard/admin" mobile>
-            Dashboard
-          </NavLink>
-          {user ? (
-            <NavLink href="/login" mobile>
-              Logout
-            </NavLink>
+
+          {user?.role ? (
+            <>
+              <NavLink href={`/dashboard/${user?.role?.toLowerCase()}`} mobile>
+                Dashboard
+              </NavLink>
+              <NavLink href="/login" mobile>
+                Logout
+              </NavLink>
+            </>
           ) : (
             <NavLink href="/login" mobile>
               Login
@@ -154,8 +158,12 @@ const NavLink = ({
       <motion.span
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className={`block ${mobile ? "px-4 py-2" : ""} hover:text-blue-500  ${
-          isActive ? "text-blue-500" : ""
+        className={`block ${
+          mobile ? "px-4 py-2" : "px-4 py-2 rounded-md"
+        } hover:text-blue-500  ${
+          isActive
+            ? "md:hover:text-white md:text-white md:bg-blue-500 text-blue-500"
+            : ""
         }`}
       >
         {children}

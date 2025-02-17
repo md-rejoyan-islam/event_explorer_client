@@ -3,6 +3,12 @@ import { auth } from "@/lib/auth";
 
 import { getUserIdByEmail } from "@/utils/fetch-query";
 import { SessionType } from "@/utils/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Admin All Events | Event Explorer",
+  description: "Admin can view all the events in the dashboard.",
+};
 
 export default async function AllEvents() {
   const session = (await auth()) as unknown as SessionType;

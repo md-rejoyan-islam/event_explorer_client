@@ -2,6 +2,12 @@ import CreateEventForm from "@/components/dashboard/admin/create-event";
 import { auth } from "@/lib/auth";
 import { getUserIdByEmail } from "@/utils/fetch-query";
 import { SessionType } from "@/utils/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Create Event | Event Explorer",
+  description: "Admin can create an event in the dashboard.",
+};
 
 export default async function CreateEvent() {
   const session = (await auth()) as unknown as SessionType;

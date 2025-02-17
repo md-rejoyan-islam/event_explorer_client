@@ -2,6 +2,13 @@ import AdminDashboard from "@/components/dashboard/admin/admin-dashboard";
 import { auth } from "@/lib/auth";
 import { getUserIdByEmail } from "@/utils/fetch-query";
 import { SessionType } from "@/utils/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Admin Dashboard | Event Explorer",
+  description:
+    "Admin can view and manage all the events and users in the dashboard.",
+};
 
 export default async function AdminDashboardPage() {
   const session = (await auth()) as unknown as SessionType;

@@ -132,7 +132,7 @@ export default function Sidebar({ user }: { user: { role: string } }) {
             Home
           </Link>
           <Link
-            href={"#"}
+            href={"/login"}
             onClick={handleLogout}
             className="flex items-center px-4 py-2 text-gray-700 bg-red-100 hover:bg-red-200"
           >
