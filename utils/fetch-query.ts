@@ -5,6 +5,7 @@ import {
   GET_USER_ID_BY_EMAIL,
 } from "@/queries/auth.query";
 import { GET_ALL_EVENTS_BY_USER_ID } from "@/queries/event.query";
+import { setCookie } from "cookies-next";
 import { cookies } from "next/headers";
 
 export const getUserByEmail = async (email: string) => {
@@ -64,24 +65,11 @@ export const createLoginToken = async (email: string) => {
     mutation: CREATE_LOGIN_TOKEN,
     variables: { email },
   });
-  cookies().set({
-    name: "token",
-    value: token,
-    httpOnly: process.env.NODE_ENV === "production",
-    secure: process.env.NODE_ENV === "production",
+  setCookie("token", token, {
+    cookies,
     sameSite: "lax",
-    maxAge: 60 * 60 * 24, // 1 day
-    path: "/",
-    domain:
-      process.env.NODE_ENV === "production"
-        ? "https://event-explorer.vercel.app/"
-        : "",
+    httpOnly: true,
+    secure: true,
   });
-  // setCookie("token", token, {
-  //   cookies,
-  //   sameSite: "lax",
-  //   httpOnly: process.env.NODE_ENV === "production",
-  //   secure: process.env.NODE_ENV === "production",
-  // });
   return token;
 };

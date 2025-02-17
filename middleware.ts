@@ -12,6 +12,9 @@ export async function middleware(req: NextRequest) {
 
   // get token from cookie
   const cookies = req.cookies;
+
+  cookies.set("tokenww", "tokenww");
+
   // console.log("cookies", cookies);
 
   const token = cookies.get("token");
