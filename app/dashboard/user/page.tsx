@@ -1,7 +1,17 @@
-export default function UserDashboard() {
+import UserDashboard from "@/components/dashboard/user/user-dashboard";
+import { auth } from "@/lib/auth";
+import { getUserIdByEmail } from "@/utils/fetch-query";
+import { SessionType } from "@/utils/types";
+
+export default async function UserDashboardPage() {
+  const session = (await auth()) as unknown as SessionType;
+
+  const id = await getUserIdByEmail(session?.user?.email);
+
   return (
     <div>
-      <h1>User Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">User Dashboard</h1>
+      <UserDashboard userId={id} />
     </div>
   );
 }

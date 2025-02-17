@@ -10,7 +10,9 @@ export default async function EnrolledEvents() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Enrolled Events</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">
+        My Enrolled Events
+      </h1>
       <UserEnrolledEvents userId={id} />
     </div>
   );

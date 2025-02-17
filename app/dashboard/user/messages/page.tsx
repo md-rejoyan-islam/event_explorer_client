@@ -9,10 +9,10 @@ export default async function Messages() {
   const id = await getUserIdByEmail(session?.user?.email);
 
   return (
-    <>
-      <div>
-        <MessagesTable userId={id} />
-      </div>
-    </>
+    <div>
+      <h1 className="text-3xl font-bold mb-6 text-center">My Messages</h1>
+
+      <MessagesTable userId={id} />
+    </div>
   );
 }

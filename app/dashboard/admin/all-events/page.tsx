@@ -11,7 +11,7 @@ export default async function AllEvents() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">All Events</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">All Events</h1>
       <AdminAllEvents userId={id} />
     </div>
   );

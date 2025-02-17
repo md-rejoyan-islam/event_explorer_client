@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EVENT_TYPE } from "@/utils/types";
 
+import SmallLoading from "@/components/small-loading";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,7 +24,11 @@ import { useMutation, useQuery } from "@apollo/client";
 import { toast } from "react-toastify";
 
 export default function AdminAllEvents({ userId }: { userId: string }) {
-  const { data: { events = [] } = {}, refetch } = useQuery(
+  const {
+    data: { events = [] } = {},
+    refetch,
+    loading,
+  } = useQuery(
     GET_ALL_EVENTS_BY_USER_ID({
       query: `title,date,description,id`,
     }),
@@ -46,6 +51,8 @@ export default function AdminAllEvents({ userId }: { userId: string }) {
       },
     });
   };
+
+  if (loading) return <SmallLoading />;
 
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

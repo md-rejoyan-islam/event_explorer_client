@@ -43,11 +43,6 @@ const eventSchema = z.object({
       required_error: "Event description is required",
     })
     .min(10, "Event description should be at least 10 characters long"),
-  image: z
-    .string({
-      required_error: "Event image is required",
-    })
-    .url("Event image should be a valid URL"),
   price: z
     .number({
       required_error: "Event price is required",
@@ -103,7 +98,6 @@ const CreateEventForm = ({
             location: "",
             category: "",
             description: "",
-            image: "",
             price: 0,
             capacity: 0,
             authorId: adminId,
@@ -112,13 +106,21 @@ const CreateEventForm = ({
           },
   });
 
-  const [createEvent] = useMutation(CREATE_AN_EVENT, {
-    refetchQueries: ["AllEventOutput", "GetAllEventsByUserId"],
+  const [createEvent, { loading }] = useMutation(CREATE_AN_EVENT, {
+    refetchQueries: [
+      "AllEventOutput",
+      "GetAllEventsByUserId",
+      "allEvents",
+      "events",
+    ],
   });
 
-  const [updateEvent] = useMutation(UPDATE_EVENT_BY_ID, {
-    refetchQueries: ["AllEventOutput", "GetAllEventsByUserId"],
-  });
+  const [updateEvent, { loading: updateLoading }] = useMutation(
+    UPDATE_EVENT_BY_ID,
+    {
+      refetchQueries: ["AllEventOutput", "GetAllEventsByUserId"],
+    }
+  );
 
   const onSubmit = async (data: EventFormValues) => {
     if (type === "create") {
@@ -249,17 +251,6 @@ const CreateEventForm = ({
         )}
       </div>
 
-      {/* Event Image */}
-      <div>
-        <Label htmlFor="image">Image URL</Label>
-        <Controller
-          name="image"
-          control={control}
-          render={({ field }) => <Input {...field} id="image" />}
-        />
-        {errors.image && <p className="text-red-500">{errors.image.message}</p>}
-      </div>
-
       {/* Event Price */}
       <div>
         <Label htmlFor="price">Price</Label>
@@ -339,7 +330,11 @@ const CreateEventForm = ({
 
       {/* Submit Button */}
       <div className="pt-3">
-        <Button type="submit" className="w-full">
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={loading || updateLoading}
+        >
           Create Event
         </Button>
       </div>

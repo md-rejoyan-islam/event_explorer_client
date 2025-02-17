@@ -16,7 +16,18 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
+interface SidebarLink {
+  href: string;
+  label: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+}
+
 const adminLinks = [
+  {
+    href: "/dashboard/admin",
+    label: "Home",
+    icon: House,
+  },
   { href: "/dashboard/admin/all-events", label: "All Events", icon: Calendar },
   {
     href: "/dashboard/admin/create-event",
@@ -32,6 +43,11 @@ const adminLinks = [
 ];
 
 const userLinks = [
+  {
+    href: "/dashboard/user",
+    label: "Home",
+    icon: House,
+  },
   {
     href: "/dashboard/user/my-events",
     label: "Enrolled Events",
@@ -89,20 +105,21 @@ export default function Sidebar({ user }: { user: { role: string } }) {
           </div>
           <nav className="mt-8">
             <ul>
-              {links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 ${
-                      pathname === link.href ? "bg-gray-100" : ""
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <link.icon className="mr-2 h-5 w-5" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {links?.length &&
+                links.map((link: SidebarLink, index) => (
+                  <li key={index}>
+                    <Link
+                      href={link.href}
+                      className={`flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 ${
+                        pathname === link.href ? "bg-gray-100" : ""
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <link.icon className="mr-2 h-5 w-5" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </nav>
         </div>

@@ -16,16 +16,18 @@ import {
 import { useMutation, useQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import SmallLoading from "../small-loading";
 
 export default function MessagesTable({ userId }: { userId?: string }) {
-  const { data: { messages = [] } = {}, refetch } = useQuery(
-    userId ? GET_ALL_MESSAGES_BY_USER_ID : GET_ALL_MESSAGE,
-    {
-      variables: {
-        userId: userId,
-      },
-    }
-  );
+  const {
+    data: { messages = [] } = {},
+    refetch,
+    loading,
+  } = useQuery(userId ? GET_ALL_MESSAGES_BY_USER_ID : GET_ALL_MESSAGE, {
+    variables: {
+      userId: userId,
+    },
+  });
 
   const [deleteMessage] = useMutation(DELETE_MESSAGE_BY_ID);
 
@@ -45,6 +47,8 @@ export default function MessagesTable({ userId }: { userId?: string }) {
       toast.error("Something went wrong");
     }
   };
+
+  if (loading) return <SmallLoading />;
 
   return (
     <div className=" mx-auto py-4">

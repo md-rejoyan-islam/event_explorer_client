@@ -26,21 +26,20 @@ export default function EventDetails({
 }) {
   const user = session?.user || null;
 
-  const { data, refetch, loading, error } = useQuery(
+  const { data, refetch, loading } = useQuery(
     userId
       ? GET_EVENT_BY_ID_WITH_USERID({
-          query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email} , additionalInfo  `,
+          query: `title, date, time, location, category, capacity, price, id , organizer { name, email} , additionalInfo  `,
         })
       : GET_EVENT_BY_ID({
-          query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email} , additionalInfo  `,
+          query: `title, date, time, location, category, capacity, price, id , organizer { name, email} , additionalInfo  `,
         }),
     {
       variables: { id: eventId, userId },
     }
   );
-  console.log("error", error);
 
-  const event = { ...data?.event, isEnrolled: data?.isEnrolled ?? false };
+  const event = { ...data?.event, isEnrolled: data?.isEnrolled };
 
   const router = useRouter();
   const pathname = usePathname();
@@ -69,6 +68,7 @@ export default function EventDetails({
   };
 
   if (loading) return <LoadingComponent />;
+  if (!data?.event) throw new Error("Event not found");
 
   return (
     <motion.div

@@ -1,4 +1,5 @@
 "use client";
+import SmallLoading from "@/components/small-loading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -10,12 +11,13 @@ import { useMutation, useQuery } from "@apollo/client";
 import { toast } from "react-toastify";
 
 export default function UserEnrolledEvents({ userId }: { userId: string }) {
-  const { data: { events = [] } = {}, refetch } = useQuery(
-    GET_ENROLLED_EVENTS_BY_USER_ID,
-    {
-      variables: { userId },
-    }
-  );
+  const {
+    data: { events = [] } = {},
+    refetch,
+    loading,
+  } = useQuery(GET_ENROLLED_EVENTS_BY_USER_ID, {
+    variables: { userId },
+  });
 
   const [unenrolled] = useMutation(UNENROLLED_AN_EVENT);
 
@@ -35,6 +37,8 @@ export default function UserEnrolledEvents({ userId }: { userId: string }) {
       console.log("Something went wrong, please try again");
     }
   };
+
+  if (loading) return <SmallLoading />;
 
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
