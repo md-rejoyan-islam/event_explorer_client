@@ -69,8 +69,12 @@ export const createLoginToken = async (email: string) => {
     value: token,
     httpOnly: process.env.NODE_ENV === "production",
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
+    sameSite: "lax",
     maxAge: 60 * 60 * 24, // 1 day
+    domain:
+      process.env.NODE_ENV === "production"
+        ? "https://event-explorer.vercel.app/"
+        : "",
   });
   // setCookie("token", token, {
   //   cookies,
