@@ -40,6 +40,7 @@ export default function EventDetails({
   );
 
   const event = { ...data?.event, isEnrolled: data?.isEnrolled ?? false };
+  console.log(event);
 
   const router = useRouter();
   const pathname = usePathname();
