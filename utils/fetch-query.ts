@@ -71,6 +71,7 @@ export const createLoginToken = async (email: string) => {
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     maxAge: 60 * 60 * 24, // 1 day
+    path: "/",
     domain:
       process.env.NODE_ENV === "production"
         ? "https://event-explorer.vercel.app/"
