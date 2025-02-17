@@ -28,7 +28,11 @@ const Header = ({ user }: { user?: { role: string } }) => {
       redirect: false,
       redirectTo: "/login",
     });
-    deleteCookie("token");
+    deleteCookie("token", {
+      sameSite: "lax",
+      httpOnly: process.env.NODE_ENV === "production",
+      secure: process.env.NODE_ENV === "production",
+    });
     router.refresh();
   };
 

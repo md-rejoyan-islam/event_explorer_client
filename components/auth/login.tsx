@@ -42,6 +42,8 @@ export default function Login() {
         toast.error(response.message);
       } else {
         toast.success("Logged in successfully!");
+        console.log(searchParams.get("next"));
+
         const next =
           searchParams.get("next") ||
           `/dashboard/${data.isAdmin ? "admin" : "user"}`;

@@ -17,7 +17,12 @@ export async function login(data: LOGIN_TYPE) {
       })
       .then(async (res) => {
         const token = res.data?.user?.token;
-        setCookie("token", token, { cookies, sameSite: "lax" });
+        setCookie("token", token, {
+          cookies,
+          sameSite: "lax",
+          httpOnly: process.env.NODE_ENV === "production",
+          secure: process.env.NODE_ENV === "production",
+        }); // https://event-explorer.vercel.app/api/auth/callback/google
 
         await signIn("credentials", {
           email: data.email,
