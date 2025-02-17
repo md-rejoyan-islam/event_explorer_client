@@ -26,7 +26,7 @@ export default function EventDetails({
 }) {
   const user = session?.user || null;
 
-  const { data, refetch, loading } = useQuery(
+  const { data, refetch, loading, error } = useQuery(
     userId
       ? GET_EVENT_BY_ID_WITH_USERID({
           query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email} , additionalInfo  `,
@@ -38,6 +38,8 @@ export default function EventDetails({
       variables: { id: eventId, userId },
     }
   );
+  console.log("error", error);
+
   console.log(data);
 
   const event = { ...data?.event, isEnrolled: data?.isEnrolled ?? false };
