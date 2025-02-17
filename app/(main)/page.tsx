@@ -16,7 +16,7 @@ export default async function Home() {
     },
   } = await apolloClient.query({
     query: GET_ALL_EVENTS({
-      query: ` title, capacity, date, location, time, category, id`,
+      query: ` title, capacity, date, location, time, category, id, price, totalEnrolled`,
     }),
   });
 

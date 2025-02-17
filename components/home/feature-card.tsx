@@ -1,9 +1,59 @@
 import { EVENT_TYPE } from "@/utils/types";
 import { formattedDate } from "@/utils/utils";
-import { ArrowRight, Calendar, Clock, MapPin } from "lucide-react";
-import Link from "next/link";
+import {
+  ArrowRight,
+  Calendar,
+  Clock,
+  MapPin,
+  Ticket,
+  Users,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Badge } from "../ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { Progress } from "../ui/progress";
+
+const styles = [
+  {
+    color: "from-orange-500 to-red-500",
+    gradient: "from-orange-500/10 to-red-500/10",
+    shadow: "shadow-orange-500/10",
+  },
+  {
+    color: "from-purple-500 to-pink-500",
+    gradient: "from-purple-500/10 to-pink-500/10",
+    shadow: "shadow-purple-500/10",
+  },
+  {
+    color: "from-blue-500 to-cyan-500",
+    gradient: "from-blue-500/10 to-cyan-500/10",
+    shadow: "shadow-blue-500/10",
+  },
+  {
+    color: "from-green-500 to-emerald-500",
+    gradient: "from-green-500/10 to-emerald-500/10",
+    shadow: "shadow-green-500/10",
+  },
+  {
+    color: "from-yellow-500 to-orange-500",
+    gradient: "from-yellow-500/10 to-orange-500/10",
+    shadow: "shadow-yellow-500/10",
+  },
+  {
+    color: "from-pink-500 to-rose-500",
+    gradient: "from-pink-500/10 to-rose-500/10",
+    shadow: "shadow-pink-500/10",
+  },
+];
+
+// Calculate days until event
+const getDaysUntil = (date: string) => {
+  const days = Math.ceil(
+    (new Date(date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)
+  );
+  return days;
+};
 
 export default function FeatureCard({
   event,
@@ -12,56 +62,103 @@ export default function FeatureCard({
   event: EVENT_TYPE;
   index: number;
 }) {
+  const categoryStyle =
+    styles[index > styles?.length - 1 ? index % styles?.length : index];
+  const spotsTaken = event.totalEnrolled || 0;
+  const spotsPercentage = (spotsTaken / event.capacity) * 100;
+  const daysUntil = getDaysUntil(event.date);
+  const router = useRouter();
   return (
     <Card
       key={index}
-      className="group relative overflow-hidden transition-all duration-300 hover:shadow-sm hover:-translate-y-1 bg-gradient-to-br border"
+      className={`relative group overflow-hidden border backdrop-blur-sm bg-white 
+                shadow-xl ${categoryStyle.shadow} hover:shadow-2xl transition-all duration-300
+                hover:-translate-y-1`}
     >
-      <CardHeader className="pb-4 relative">
-        <div className="flex justify-between items-start">
-          <Badge
-            variant="outline"
-            className={`border-orange-500 text-orange-500 rounded-full`}
-          >
-            {event.category}
-          </Badge>
+      {/* Background Gradient */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${categoryStyle.gradient} opacity-30`}
+      />
+
+      {/* Price Tag */}
+      <div className="absolute top-4 right-4 rotate-12 group-hover:rotate-0 transition-transform">
+        <div
+          className={`bg-gradient-to-r ${categoryStyle.color} text-white px-4 py-1 rounded-full
+                  shadow-lg font-bold flex items-center gap-1`}
+        >
+          <Ticket className="w-4 h-4" />${event.price}
         </div>
-        <CardTitle className="text-2xl mt-2 transition-all duration-300 group-hover:text-purple-500 ">
+      </div>
+
+      <CardHeader className="relative p-6">
+        <Badge
+          variant="secondary"
+          className={`w-fit mb-2 bg-gradient-to-r ${categoryStyle.color} text-white`}
+        >
+          {event.category}
+        </Badge>
+        <h2 className="text-2xl font-bold text-foreground mb-2">
           {event.title}
-        </CardTitle>
+        </h2>
+        <p className="text-muted-foreground text-sm line-clamp-2">
+          {event.description}
+        </p>
       </CardHeader>
-      <CardContent className="relative">
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 text-muted-foreground transition-all duration-300 hover:text-current">
-            <div className="p-2 rounded-full bg-background/50 backdrop-blur-sm">
-              <Calendar className="w-4 h-4" />
+
+      <CardContent className="relative p-6 pt-0 space-y-4">
+        <div className="flex items-center text-muted-foreground">
+          <Calendar className="h-4 w-4 mr-2" />
+          <span>{formattedDate(event.date)}</span>
+        </div>
+        <div className="flex items-center text-muted-foreground">
+          <Clock className="h-4 w-4 mr-2" />
+          <span>{event.time}</span>
+        </div>
+        <div className="flex items-center text-muted-foreground">
+          <MapPin className="h-4 w-4 mr-2" />
+          <span className="line-clamp-1">{event.location}</span>
+        </div>
+
+        {/* Capacity Indicator */}
+        <div className="space-y-2">
+          <div className="flex justify-between text-sm">
+            <div className="flex items-center gap-1 text-muted-foreground">
+              <Users className="h-4 w-4" />
+              <span>
+                {spotsTaken} / {event.capacity} spots taken
+              </span>
             </div>
-            <span>{formattedDate(event.date)}</span>
-          </div>
-          <div className="flex items-center gap-3 text-muted-foreground transition-all duration-300 hover:text-current">
-            <div className="p-2 rounded-full bg-background/50 backdrop-blur-sm">
-              <Clock className="w-4 h-4" />
-            </div>
-            <span>{event.time}</span>
-          </div>
-          <div className="flex items-center gap-3 text-muted-foreground transition-all duration-300 hover:text-current">
-            <div className="p-2 rounded-full bg-background/50 backdrop-blur-sm">
-              <MapPin className="w-4 h-4" />
-            </div>
-            <span>{event.location}</span>
-          </div>
-          <Link
-            href={`/events/${event.id}`}
-            className="w-full mt-6 group/button relative overflow-hidden transition-all duration-300 block px-2 border rounded-md py-2 text-center"
-          >
-            <span className="relative z-10 group-hover/button:text-white transition-colors duration-300">
-              View Details
+            <span
+              className={`font-medium ${
+                spotsPercentage > 80 ? "text-red-500" : "text-green-500"
+              }`}
+            >
+              {Math.floor(100 - spotsPercentage)}% left
             </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-600 text-white   transform translate-y-full group-hover/button:translate-y-0 transition-transform duration-300"></span>
-            <ArrowRight className="w-4 h-4 ml-2 inline-block transition-transform duration-300 group-hover/button:translate-x-1" />
-          </Link>
+          </div>
+          <Progress
+            value={spotsPercentage}
+            className={`h-2 bg-gradient-to-r ${categoryStyle.color}`}
+          />
         </div>
       </CardContent>
+
+      <CardFooter className="relative p-6 pt-0">
+        <Button
+          className={`w-full bg-gradient-to-r ${categoryStyle.color} text-white
+                    hover:opacity-90 transition-opacity`}
+          onClick={() => {
+            router.push(`/events/${event.id}`);
+          }}
+        >
+          <span className="flex-1">
+            {daysUntil > 0
+              ? `Book Now • ${daysUntil} days left`
+              : "Event Ended"}
+          </span>
+          <ArrowRight className="h-4 w-4 ml-2" />
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

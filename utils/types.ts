@@ -16,6 +16,7 @@ export interface EVENT_TYPE {
   updatedAt: string;
   organizer: USER_TYPE;
   isEnrolled?: boolean;
+  totalEnrolled: number;
 }
 
 export interface USER_TYPE {

@@ -45,3 +45,9 @@ export const UNENROLLED_AN_EVENT = gql`
     }
   }
 `;
+
+export const TOTAL_ENROOLED_EVENT_BY_EVENT_ID = gql`
+  query Query($eventId: ID!) {
+    total_enrolled: totalEnrolledEventsByEventId(eventId: $eventId)
+  }
+`;

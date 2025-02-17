@@ -35,7 +35,7 @@ export default function Homepage({ events }: { events: EVENT_TYPE[] }) {
       </motion.section>
 
       <motion.section variants={slideIn} className="my-12">
-        <h2 className="text-3xl font-bold mb-6 text-mySecondary">
+        <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
           Featured Events
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
