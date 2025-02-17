@@ -38,6 +38,7 @@ export default function EventDetails({
       variables: { id: eventId, userId },
     }
   );
+  console.log(data);
 
   const event = { ...data?.event, isEnrolled: data?.isEnrolled ?? false };
   console.log(event);
