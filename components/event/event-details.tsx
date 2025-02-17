@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { Calendar, Clock, DollarSign, MapPin, Tag, Users } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import LoadingComponent from "../loading";
 
 export default function EventDetails({
   session,
@@ -25,7 +26,7 @@ export default function EventDetails({
 }) {
   const user = session?.user || null;
 
-  const { data, refetch } = useQuery(
+  const { data, refetch, loading } = useQuery(
     userId
       ? GET_EVENT_BY_ID_WITH_USERID({
           query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email} , additionalInfo  `,
@@ -65,6 +66,8 @@ export default function EventDetails({
       }
     }
   };
+
+  if (loading) return <LoadingComponent />;
 
   return (
     <motion.div
