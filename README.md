@@ -137,9 +137,11 @@ This is the frontend for an **Event Explorer** application built with **Next.js*
 
 ## Links
 
-[Backend Repository]("https://github.com/md-rejoyan-islam/event_explorer_api")
+[Backend Repository](https://github.com/md-rejoyan-islam/event_explorer_api)
 
-[Live Demo]("https://event-explorer.vercel.app")
+[Live Demo](https://event-explorer.vercel.app)
+
+[API Demo](https://ministerial-gabriel-rejoyan-cd2987cb.koyeb.app/graphql)
 
 ## Contact
 
