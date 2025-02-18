@@ -244,7 +244,9 @@ const CreateEventForm = ({
         <Controller
           name="description"
           control={control}
-          render={({ field }) => <Textarea {...field} id="description" />}
+          render={({ field }) => (
+            <Textarea {...field} id="description" rows={5} />
+          )}
         />
         {errors.description && (
           <p className="text-red-500">{errors.description.message}</p>
@@ -335,7 +337,7 @@ const CreateEventForm = ({
           className="w-full"
           disabled={loading || updateLoading}
         >
-          Create Event
+          {type === "create" ? "Create Event" : "Update Event"}
         </Button>
       </div>
     </form>

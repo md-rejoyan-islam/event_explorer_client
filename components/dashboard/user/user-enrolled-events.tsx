@@ -8,6 +8,7 @@ import {
 } from "@/queries/enrolled.query";
 import { formattedDate } from "@/utils/utils";
 import { useMutation, useQuery } from "@apollo/client";
+import Link from "next/link";
 import { toast } from "react-toastify";
 
 export default function UserEnrolledEvents({ userId }: { userId: string }) {
@@ -49,7 +50,11 @@ export default function UserEnrolledEvents({ userId }: { userId: string }) {
         }) => (
           <Card key={event.eventId}>
             <CardHeader>
-              <CardTitle>{event?.event?.title}</CardTitle>
+              <CardTitle>
+                <Link href={`/events/${event.eventId}`}>
+                  {event?.event?.title}
+                </Link>
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p>Date: {formattedDate(event?.event?.date)}</p>

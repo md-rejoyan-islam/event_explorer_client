@@ -29,13 +29,13 @@ export default function AdminDashboard({ userId }: { userId: string }) {
     <div className="">
       <div className="flex gap-10 justify-center flex-wrap">
         <Card className=" p-5 min-w-[250px] sm:min-w-[300px]">
-          <h1 className="text-2xl font-bold text-center">Enrolled Events</h1>
+          <h1 className="text-2xl font-bold text-center">Create Event</h1>
           <p className="text-3xl text-center pt-3 text-green-400 font-black">
             {events?.length || 0}
           </p>
         </Card>
         <Card className=" min-w-[250px] p-5 sm:min-w-[300px]">
-          <h1 className="text-2xl font-bold text-center">Messages</h1>
+          <h1 className="text-2xl font-bold text-center">User Messages</h1>
           <p className="text-3xl text-center pt-3 text-green-400 font-black">
             {messages?.length || 0}
           </p>

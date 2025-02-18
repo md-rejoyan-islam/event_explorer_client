@@ -25,6 +25,7 @@ export const GET_ALL_MESSAGES_BY_USER_ID = gql`
 export const GET_ALL_MESSAGE = gql`
   query GetAllMessages {
     messages: getAllMessages {
+      id
       message
       sender {
         name

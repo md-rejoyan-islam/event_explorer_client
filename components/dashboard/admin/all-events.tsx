@@ -20,6 +20,7 @@ import {
   DELETE_EVENT_BY_ID,
   GET_ALL_EVENTS_BY_USER_ID,
 } from "@/queries/event.query";
+import { formattedDate } from "@/utils/utils";
 import { useMutation, useQuery } from "@apollo/client";
 import { toast } from "react-toastify";
 
@@ -62,8 +63,8 @@ export default function AdminAllEvents({ userId }: { userId: string }) {
             <CardTitle>{event.title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Date: {event.date}</p>
-            <p className="mt-2">{event.description}</p>
+            <p>Date: {formattedDate(event.date)}</p>
+            {/* <p className="mt-2">{event.description}</p> */}
             <div className="mt-4 space-x-2">
               <EditEventModal eventId={event.id} userId={userId} />
 

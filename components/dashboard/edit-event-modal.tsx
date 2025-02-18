@@ -23,7 +23,7 @@ export function EditEventModal({ eventId, userId }: EditEventModalProps) {
 
   const { data: { event = {} } = {} } = useQuery(
     GET_EVENT_BY_ID_WITH_USERID({
-      query: `title, date, time, location, category, capacity, price, image,id , organizer { name, email} , description , additionalInfo , id , status`,
+      query: `title, date, time, location, category, capacity, price, id , organizer { name, email} , description , additionalInfo , id , status`,
     }),
     {
       variables: { id: eventId, userId },
