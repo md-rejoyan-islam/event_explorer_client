@@ -1,6 +1,6 @@
-# Event Handler Frontend
+# Event Explorer Frontend
 
-This is the frontend for an **Event Handler** application built with **Next.js**. It connects to a backend API using **Apollo Client**. The backend API is built with **Express**, **GraphQL**, **Apollo Server**, **Prisma**, and **MongoDB**.
+This is the frontend for an **Event Explorer** application built with **Next.js**. It connects to a backend API using **Apollo Client**. The backend API is built with **Express**, **GraphQL**, **Apollo Server**, **Prisma**, and **MongoDB**.
 
 ## Features
 
@@ -134,6 +134,12 @@ This is the frontend for an **Event Handler** application built with **Next.js**
     }
   }
   ```
+
+## Links
+
+[Backend Repository]("https://github.com/md-rejoyan-islam/event_explorer_api")
+
+[Live Demo]("https://event-explorer.vercel.app")
 
 ## Contact
 
