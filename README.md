@@ -145,6 +145,6 @@ This is the frontend for an **Event Explorer** application built with **Next.js*
 
 For questions or suggestions, feel free to reach out:
 
-- **Name**: Md Rejoyan Islam
+- **Name**: Md. Rejoyan Islam
 - **Email**: [rejoyanislam0014@gmail.com]
 - **LinkedIn**: [https://www.linkedin.com/in/md-rejoyan-islam/]
