@@ -23,7 +23,7 @@ export default function ContactPage({
     >
       <motion.h1
         variants={fadeIn}
-        className="text-4xl font-bold mb-8 text-center text-myPrimary"
+        className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text"
       >
         Contact Us
       </motion.h1>
@@ -33,14 +33,14 @@ export default function ContactPage({
         className="grid grid-cols-1 md:grid-cols-2 gap-8"
       >
         <div className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-mySecondary">
+          <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
             Get in Touch
           </h2>
           <ContactForm user={user} />
         </div>
         {/* Contact Information */}
         <div className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-mySecondary">
+          <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
             Contact Information
           </h2>
           <div className="space-y-4">

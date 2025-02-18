@@ -16,7 +16,9 @@ export default async function CreateEvent() {
 
   return (
     <div className="max-w-xl mx-auto bg-white p-4 md:p-8 rounded-lg shadow-sm">
-      <h1 className="text-3xl font-bold mb-6 text-center">Create An Event</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
+        Create An Event
+      </h1>
       <CreateEventForm adminId={id} />
     </div>
   );

@@ -57,7 +57,7 @@ export default function EventPage({
     >
       <motion.h1
         variants={fadeIn}
-        className="text-4xl font-bold mb-8 text-center relative text-myPrimary"
+        className="text-4xl font-bold mb-8 text-center relative bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text"
       >
         Explore All Events
       </motion.h1>

@@ -24,7 +24,9 @@ export default function Profile({ email }: { email: string }) {
       variants={fadeIn}
       className="space-y-6 max-w-[600px] mx-auto"
     >
-      <h2 className="text-2xl font-semibold text-gray-900">My Profile</h2>
+      <h2 className="text-2xl font-semibold bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
+        My Profile
+      </h2>
       <motion.div variants={slideIn} className="bg-white shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
           {isEditing ? (

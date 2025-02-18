@@ -48,7 +48,7 @@ const Header = ({ user }: { user?: { role: string } }) => {
         <Link href="/">
           <motion.h1
             variants={slideIn}
-            className="text-2xl font-bold text-myPrimary flex items-center gap-2 cursor-pointer"
+            className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text flex items-center gap-2 cursor-pointer"
           >
             <Image
               src="/logo/logo2.png"
@@ -89,7 +89,7 @@ const Header = ({ user }: { user?: { role: string } }) => {
                 <hr />
                 <Link
                   href="#"
-                  className="px-4 py-2 text-gray-700 flex items-center gap-1 hover:bg-red-100 bg-gray-50"
+                  className="px-4 py-2 text-gray-700 flex items-center gap-1 hover:bg-gray-100 bg-gray-50"
                   onClick={handleLogout}
                 >
                   <LogOut />
@@ -159,10 +159,10 @@ const NavLink = ({
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={`block ${
-          mobile ? "px-4 py-2" : "px-4 py-2 rounded-md"
+          mobile ? "px-4 py-2" : "px-3.5 py-1.5 rounded-md"
         } hover:text-blue-500  ${
           isActive
-            ? "md:hover:text-white md:text-white md:bg-blue-500 text-blue-500"
+            ? "md:hover:text-white md:text-white  text-blue-500 md:bg-gradient-to-r from-purple-600 to-pink-600"
             : ""
         }`}
       >

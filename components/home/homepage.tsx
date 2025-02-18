@@ -14,10 +14,10 @@ export default function Homepage({ events }: { events: EVENT_TYPE[] }) {
       className="container mx-auto px-4 relative max-width"
     >
       <motion.section variants={fadeIn} className="text-center my-12 relative">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-myPrimary">
+        <h1 className="text-4xl md:text-6xl font-bold pb-4  bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
           Discover Amazing Events
         </h1>
-        <p className="text-xl mb-8">
+        <p className="text-xl mb-8 ">
           Find and join exciting events in your area
         </p>
         <Link href="/events">

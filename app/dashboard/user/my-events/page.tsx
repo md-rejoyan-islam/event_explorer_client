@@ -17,7 +17,7 @@ export default async function EnrolledEvents() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6 text-center">
+      <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
         My Enrolled Events
       </h1>
       <UserEnrolledEvents userId={id} />

@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 export default async function Messages() {
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6 text-center">All Messages</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
+        All Messages
+      </h1>
       <MessagesTable />
     </div>
   );
