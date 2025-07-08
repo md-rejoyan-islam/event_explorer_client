@@ -1,152 +1,108 @@
-# Event Explorer Frontend
+<div align="center">
+  <img src="./public/logo/logo.png" alt="Event Explorer Logo" width="150">
+  <h1 align="center">Event Explorer</h1>
+  <p align="center">
+    A modern, full-stack event management platform built with Next.js and a GraphQL backend. Discover, create, and manage events with a seamless and interactive user experience.
+  </p>
+</div>
 
-This is the frontend for an **Event Explorer** application built with **Next.js**. It connects to a backend API using **Apollo Client**. The backend API is built with **Express**, **GraphQL**, **Apollo Server**, **Prisma**, and **MongoDB**.
+---
 
-## Features
+## 🚀 Live Demo & Links
 
-### Admin
+- **Live Frontend**: [https://event-explorer.vercel.app](https://event-explorer.vercel.app)
+- **Backend Repository**: [https://github.com/md-rejoyan-islam/event_explorer_api](https://github.com/md-rejoyan-islam/event_explorer_api)
+- **API Demo**: [https://ministerial-gabriel-rejoyan-cd2987cb.koyeb.app/graphql](https://ministerial-gabriel-rejoyan-cd2987cb.koyeb.app/graphql)
 
-- **Create Event**: Admins can create new events with relevant details.
-- **Update Event**: Admins can update existing event information.
-- **Delete Event**: Admins can delete events at any time.
-- **View All Events**: Admins can view all available events.
-- **View Enrolled Users**: Admins can view users enrolled in specific events.
+---
 
-### User
+## ✨ Features
 
-- **View All Events**: All users can view all available events.
-- **Enroll in Event**: Authenticated users can enroll in events.
-- **Unenroll from Event**: Authenticated users can unenroll from events they have enrolled in.
-- **View Enrolled Events**: Authenticated users can view events they are enrolled in.
+### 👤 User Features
 
-## Tech Stack
+- **Event Discovery**: Browse and search for events.
+- **Filter & Sort**: Filter events by category and search terms.
+- **Event Details**: View detailed information about each event.
+- **User Authentication**: Secure login and registration using credentials, Google, and Facebook.
+- **Event Enrollment**: Users can enroll in events.
+- **My Events**: View a list of events the user has enrolled in.
+- **Contact Form**: Send messages to the admin.
 
-- **Next.js** for the frontend framework.
-- **Apollo Client** for GraphQL data fetching and state management.
-- **Tailwind CSS** for styling.
-- **Typescript** for type-checking and code consistency.
-- **Framer Motion** for animations.
+### 👑 Admin Features
 
-## Pages and Routes
+- **Admin Dashboard**: Centralized dashboard for managing the platform.
+- **Event Management**:
+  - **Create**: Add new events with details like title, date, time, location, category, price, and capacity.
+  - **Update**: Modify existing event details.
+  - **Delete**: Remove events from the platform.
+- **User Management**: View and manage user-related data.
+- **Message Center**: View and manage messages sent by users.
 
-### Public
+---
 
-- **Home Page**: Shows a list of all events.
-- **Event Details Page**: Detailed view of a specific event.
-- **Login Page**: For user authentication.
-- **Register Page**: For user registration.
+## 🛠️ Tech Stack
 
-### Admin
+- **Framework**: [Next.js](https://nextjs.org/) (v14)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with [Shadcn/UI](https://ui.shadcn.com/)
+- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Data Fetching**: [Apollo Client](https://www.apollographql.com/docs/react/) for GraphQL
+- **Authentication**: [NextAuth.js](https://next-auth.js.org/)
+- **Form Management**: [React Hook Form](https://react-hook-form.com/)
+- **Schema Validation**: [Zod](https://zod.dev/)
 
-- **Create Event**: Admins can create new events.
-- **Update Event**: Admins can update existing events.
-- **Delete Event**: Admins can delete events.
+---
 
-### User
+## ⚙️ Getting Started
 
-- **Enroll in Event**: Authenticated users can enroll in events.
-- **Unenroll from Event**: Authenticated users can unenroll from events.
-- **My Enrolled Events**: Authenticated users can view events they are enrolled in.
+### Prerequisites
 
-## GraphQL Queries & Mutations
+- Node.js (v18.17.0 or later)
+- `npm` or `yarn`
 
-### Queries
+### Installation & Setup
 
-- **Get All Events**
+1.  **Clone the repository:**
 
-  ```graphql
-  query {
-    events {
-      id
-      title
-      description
-      date
-    }
-  }
-  ```
+    ```bash
+    git clone https://github.com/your-username/event-explorer-frontend.git
+    cd event-explorer-frontend
+    ```
 
-- **Get User's Enrolled Events**
-  ```graphql
-  query {
-    myEnrolledEvents {
-      id
-      title
-      date
-    }
-  }
-  ```
+2.  **Install dependencies:**
 
-### Mutations
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-- **Enroll in Event**
+3.  **Set up environment variables:**
+    Create a `.env.local` file in the root directory and add the following variables:
 
-  ```graphql
-  mutation {
-    enroll(eventId: "event_id") {
-      message
-    }
-  }
-  ```
+    ```
+    NEXT_PUBLIC_GRAPHQL_ENDPOINT=<your_backend_graphql_endpoint>
+    GOOGLE_CLIENT_ID=<your_google_client_id>
+    GOOGLE_CLIENT_SECRET=<your_google_client_secret>
+    FACEBOOK_CLIENT_ID=<your_facebook_client_id>
+    FACEBOOK_CLIENT_SECRET=<your_facebook_client_secret>
+    AUTH_SECRET=<your_auth_secret>
+    MONGO_URI=<your_mongodb_uri>
+    AUTH_TRUST_HOST=<your_auth_trust_host>
+    JWT_SECRET=<your_jwt_secret>
+    ```
 
-- **Unenroll from Event**
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-  ```graphql
-  mutation {
-    unenroll(eventId: "event_id") {
-      message
-    }
-  }
-  ```
+---
 
-- **Create Event (Admin Only)**
+## 📞 Contact
 
-  ```graphql
-  mutation {
-    createEvent(
-      input: {
-        title: "Event Title"
-        description: "Event Description"
-        date: "Event Date"
-      }
-    ) {
-      id
-      title
-    }
-  }
-  ```
+Md. Rejoyan Islam
 
-- **Update Event (Admin Only)**
-
-  ```graphql
-  mutation {
-    updateEvent(eventId: "event_id", input: { title: "Updated Title" }) {
-      id
-      title
-    }
-  }
-  ```
-
-- **Delete Event (Admin Only)**
-  ```graphql
-  mutation {
-    deleteEvent(eventId: "event_id") {
-      message
-    }
-  }
-  ```
-
-## Links
-
-[Backend Repository](https://github.com/md-rejoyan-islam/event_explorer_api)
-
-[Live Demo](https://event-explorer.vercel.app)
-
-[API Demo](https://ministerial-gabriel-rejoyan-cd2987cb.koyeb.app/graphql)
-
-## Contact
-
-For questions or suggestions, feel free to reach out:
-
-- **Name**: Md. Rejoyan Islam
-- **Email**: [rejoyanislam0014@gmail.com]
-- **LinkedIn**: [https://www.linkedin.com/in/md-rejoyan-islam/]
+- **Email**: [rejoyanislam0014@gmail.com](mailto:rejoyanislam0014@gmail.com)
+- **LinkedIn**: [https://www.linkedin.com/in/md-rejoyan-islam/](https://www.linkedin.com/in/md-rejoyan-islam/)
