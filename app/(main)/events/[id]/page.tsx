@@ -14,19 +14,25 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = (await params).id;
 
-  const {
-    data: { event },
-  } = await apolloClient.query({
-    query: GET_EVENT_BY_ID({
-      query: `title, description `,
-    }),
-    variables: { id },
-  });
-
-  return {
-    title: event?.title,
-    description: event?.description,
-  };
+  try {
+    const {
+      data: { event },
+    } = await apolloClient.query({
+      query: GET_EVENT_BY_ID({
+        query: `title, description `,
+      }),
+      variables: { id },
+    });
+    return {
+      title: event?.title,
+      description: event?.description,
+    };
+  } catch {
+    return {
+      title: "Event Not Found",
+      description: "The event you are looking for does not exist.",
+    };
+  }
 }
 
 export default async function EventDetailsPage({

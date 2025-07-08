@@ -24,7 +24,6 @@ export const {
   },
   secret: "process.env.AUTH_SECRET",
   adapter: MongoDBAdapter(mongoClient),
-  // adapter: PrismaAdapter(prisma),
   providers: [
     Credentials({
       credentials: {
@@ -65,18 +64,6 @@ export const {
       }
       return true;
     },
-    // async jwt({ token, user, account }) {
-    //   if (account) {
-    //     token.accessToken = account.accessToken;
-    //   }
-    //   return token;
-    // },
-    // async session({ session, token }) {
-    //   if (token && typeof token.accessToken === "string") {
-    //     session.accessToken = token.accessToken;
-    //   }
-    //   return session;
-    // },
   },
   cookies: {
     sessionToken: {
@@ -87,23 +74,4 @@ export const {
       },
     },
   },
-  //   pages: {
-  //     signIn: "/login",
-  //     signOut: "/logout",
-  //     error: "/error",
-  //   },
-  //   callbacks: {
-  //     async jwt({ token, user }) {
-  //       if (user) {
-  //         token.id = user.id;
-  //       }
-  //       return token;
-  //     },
-  //     async session({ session, token }) {
-  //       if (session.user) {
-  //         session.user.id = token.id as string;
-  //       }
-  //       return session;
-  //     },
-  //   },
 });

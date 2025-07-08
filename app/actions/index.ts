@@ -22,7 +22,7 @@ export async function login(data: LOGIN_TYPE) {
           sameSite: "lax",
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-        }); // https://event-explorer.vercel.app/api/auth/callback/google
+        });
 
         await signIn("credentials", {
           email: data.email,

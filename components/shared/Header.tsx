@@ -51,7 +51,7 @@ const Header = ({ user }: { user?: { role: string } }) => {
             className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text flex items-center gap-2 cursor-pointer"
           >
             <Image
-              src="/logo/logo2.png"
+              src="/logo/logo.png"
               alt="Event Explorer"
               width={40}
               height={40}
@@ -110,28 +110,32 @@ const Header = ({ user }: { user?: { role: string } }) => {
           exit={{ opacity: 0, y: -20 }}
           className="md:hidden"
         >
-          <NavLink href="/" mobile>
+          <NavLink href="/" mobile setIsOpen={setIsOpen}>
             Home
           </NavLink>
-          <NavLink href="/events" mobile>
+          <NavLink href="/events" mobile setIsOpen={setIsOpen}>
             Events
           </NavLink>
 
-          <NavLink href="/contact" mobile>
+          <NavLink href="/contact" mobile setIsOpen={setIsOpen}>
             Contact
           </NavLink>
 
           {user?.role ? (
             <>
-              <NavLink href={`/dashboard/${user?.role?.toLowerCase()}`} mobile>
+              <NavLink
+                href={`/dashboard/${user?.role?.toLowerCase()}`}
+                mobile
+                setIsOpen={setIsOpen}
+              >
                 Dashboard
               </NavLink>
-              <NavLink href="/login" mobile>
+              <NavLink href="/login" mobile setIsOpen={setIsOpen}>
                 Logout
               </NavLink>
             </>
           ) : (
-            <NavLink href="/login" mobile>
+            <NavLink href="/login" mobile setIsOpen={setIsOpen}>
               Login
             </NavLink>
           )}
@@ -145,10 +149,12 @@ const NavLink = ({
   href,
   children,
   mobile = false,
+  setIsOpen,
 }: {
   href: string;
   children: React.ReactNode;
   mobile?: boolean;
+  setIsOpen?: (isOpen: boolean) => void;
 }) => {
   const pathname = usePathname();
   const isActive = pathname === href;
@@ -157,6 +163,9 @@ const NavLink = ({
     <Link href={href}>
       <motion.span
         whileHover={{ scale: 1.05 }}
+        onClick={() => {
+          if (setIsOpen && mobile) setIsOpen(false);
+        }}
         whileTap={{ scale: 0.95 }}
         className={`block ${
           mobile ? "px-4 py-2" : "px-3.5 py-1.5 rounded-md"

@@ -50,11 +50,11 @@ export default function ContactPage({
             </div>
             <div className="flex items-center">
               <Phone className="mr-2 text-myAccent" />
-              <p>+1 (123) 456-7890</p>
+              <p>+8801568-816822</p>
             </div>
             <div className="flex items-center">
               <MapPin className="mr-2 text-myAccent" />
-              <p>123 Event Street, City, State 12345</p>
+              <p>123 Event Street, City, Sylhet</p>
             </div>
           </div>
           <div className="mt-6">

@@ -6,10 +6,9 @@ const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT as string;
 const apolloClient = new ApolloClient({
   uri: endpoint,
   cache: new InMemoryCache(),
-  // headers: {
-  //   "Content-Type": "application/json",
-  //   Authorization: `Bearer ${getCookie("token")}`,
-  // },
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export default apolloClient;
